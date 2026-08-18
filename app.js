@@ -23,9 +23,6 @@ request.onupgradeneeded = (event) => {
     }
 };
 
-// Weather API
-const API_KEY = '3394de8af7644aec9c2f6d2b493f02d4';
-const API_URL = 'https://api.weatherbit.io/v2.0/current';
 
 // Main Function
 async function getWeather(city) {
@@ -41,7 +38,7 @@ async function getWeather(city) {
         console.log('Gathering Data from the API Online.');
 
         try {
-            const response = await fetch(`${API_URL}?city=${city}&key=${API_KEY}`);
+            const response = await fetch(`/api/weather?city=${encodeURIComponent(city)}`);
             const data = await response.json();
 
             if (data.data && data.data.length > 0) {
